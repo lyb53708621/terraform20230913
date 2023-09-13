@@ -17,8 +17,8 @@ terraform {
   }
 
   backend "azurerm" {
-    resource_group_name  = "Bei2"
-    storage_account_name = "testyiboblob"
+    resource_group_name  = "ae_fundmental"
+    storage_account_name = "aesto1"
     container_name       = "terraform"
     key                  = "prd.terrasform.tfstate"
   }
