@@ -67,7 +67,6 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./main     # ${{ github.workspace}}/main
 
     steps:
     # Checkout the repository to the GitHub Actions runner
