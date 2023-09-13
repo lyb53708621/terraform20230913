@@ -22,3 +22,14 @@ $env:ARM_CLIENT_ID = "90bcb051-3931-43bd-91f1-0922cfd8818d"
 $env:ARM_CLIENT_SECRET = "eRZ8Q~22jfhkf2AmApqPY~PG43dxk~KcX5NrLcpf"
 $env:ARM_TENANT_ID = "16b3c013-d300-468d-ac64-7eda0820b6d3"
 $env:ARM_SUBSCRIPTION_ID = "2c4505c1-d87a-40fc-b001-9e2c75e36109"
+
+
+
+
+
+
+
+
+
+
+1111
