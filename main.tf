@@ -20,7 +20,7 @@ terraform {
     resource_group_name  = "Bei2"
     storage_account_name = "testyiboblob"
     container_name       = "terraform"
-    key                  = "dev.terrasform.tfstate"
+    key                  = "prd.terrasform.tfstate"
   }
 }
 
