@@ -464,8 +464,8 @@ resource "azurerm_linux_virtual_machine" "LunixVM" {
 data "azurerm_client_config" "current" {}
 
 # Create a key vault
-resource "azurerm_key_vault" "tfkv" {
-  name                        = "tfkv"
+resource "azurerm_key_vault" "tfkvyibo" {
+  name                        = "tfkvyibo"
   location                    = azurerm_resource_group.tfrg.location
   resource_group_name         = azurerm_resource_group.tfrg.name
   tenant_id                   = data.azurerm_client_config.current.tenant_id
@@ -497,7 +497,7 @@ resource "azurerm_key_vault" "tfkv" {
 
 # Create a access policy
 resource "azurerm_key_vault_access_policy" "disk_encryption" {
-  key_vault_id = azurerm_key_vault.tfkv.id
+  key_vault_id = azurerm_key_vault.tfkvyibo.id
   tenant_id    = azurerm_disk_encryption_set.disk_encryption_set.identity.0.tenant_id
   object_id    = azurerm_disk_encryption_set.disk_encryption_set.identity.0.principal_id
   #  object_id    = azurerm_disk_encryption_set.disk_encryption_set.id
@@ -531,7 +531,7 @@ resource "azurerm_key_vault_access_policy" "disk_encryption" {
 
 # Create a access policy for User
 /* resource "azurerm_key_vault_access_policy" "user_policy" {
-  key_vault_id = azurerm_key_vault.tfkv.id
+  key_vault_id = azurerm_key_vault.tfkvyibo.id
   tenant_id = data.azurerm_client_config.current.tenant_id
   object_id = data.azurerm_client_config.current.object_id
 
@@ -565,7 +565,7 @@ resource "azurerm_key_vault_access_policy" "disk_encryption" {
 # Create a key
 resource "azurerm_key_vault_key" "diskencryptionkey" {
   name         = "diskencryptionkey"
-  key_vault_id = azurerm_key_vault.tfkv.id
+  key_vault_id = azurerm_key_vault.tfkvyibo.id
   key_type     = "RSA"
   key_size     = 2048
 
