@@ -26,7 +26,7 @@ terraform {
 
 provider "azurerm" {
   skip_provider_registration = true
-#  environment = "china"
+  #  environment = "china"
   features {
     #    resource_group {
     #      prevent_deletion_if_contains_resources = true
@@ -49,7 +49,7 @@ resource "azurerm_resource_group" "tfrg" {
   name     = "${var.environment}-tfrg"
   location = var.location
   tags = {
-    Env  = "${var.environment}"
+    Env        = "${var.environment}"
     Costcenter = "arch001"
   }
 }
@@ -60,7 +60,7 @@ resource "azurerm_virtual_network" "tfhubvnet" {
   location            = azurerm_resource_group.tfrg.location
   resource_group_name = azurerm_resource_group.tfrg.name
   address_space       = ["10.210.0.0/16"]
-#  dns_servers         = ["10.0.0.4", "10.0.0.5"]
+  #  dns_servers         = ["10.0.0.4", "10.0.0.5"]
 
   tags = {
     Env = "${var.environment}"
@@ -425,19 +425,19 @@ resource "azurerm_linux_virtual_machine" "LunixVM" {
   network_interface_ids = [
     azurerm_network_interface.LunixVMNIC.id,
   ]
-#  vtpm_enabled        = true
-#  secure_boot_enabled = true
+  #  vtpm_enabled        = true
+  #  secure_boot_enabled = true
   disable_password_authentication = false
-#  admin_ssh_key {
-#    username   = "adminuser"
-#    public_key = file("~/.ssh/id_rsa.pub")
-#  }
+  #  admin_ssh_key {
+  #    username   = "adminuser"
+  #    public_key = file("~/.ssh/id_rsa.pub")
+  #  }
 
   os_disk {
-    name                 = "LinuxOS_Disk"
-    caching              = "ReadWrite"
-    storage_account_type = "StandardSSD_LRS"
-    disk_size_gb         = "50"
+    name                   = "LinuxOS_Disk"
+    caching                = "ReadWrite"
+    storage_account_type   = "StandardSSD_LRS"
+    disk_size_gb           = "50"
     disk_encryption_set_id = azurerm_disk_encryption_set.disk_encryption_set.id
   }
 
@@ -498,35 +498,35 @@ resource "azurerm_key_vault" "tfkv" {
 # Create a access policy
 resource "azurerm_key_vault_access_policy" "disk_encryption" {
   key_vault_id = azurerm_key_vault.tfkv.id
-  tenant_id = azurerm_disk_encryption_set.disk_encryption_set.identity.0.tenant_id
-  object_id = azurerm_disk_encryption_set.disk_encryption_set.identity.0.principal_id
-#  object_id    = azurerm_disk_encryption_set.disk_encryption_set.id
+  tenant_id    = azurerm_disk_encryption_set.disk_encryption_set.identity.0.tenant_id
+  object_id    = azurerm_disk_encryption_set.disk_encryption_set.identity.0.principal_id
+  #  object_id    = azurerm_disk_encryption_set.disk_encryption_set.id
 
-    key_permissions = [
-        "Create",
-        "Delete",
-        "Get",
-        "WrapKey",
-        "UnwrapKey",
-        "Purge",
-        "Recover",
-        "Update",
-        "List",
-        "Decrypt",
-        "Sign",
-        "GetRotationPolicy",
-        "Rotate",
-        "GetRotationPolicy",
-        "SetRotationPolicy",
-    ]
+  key_permissions = [
+    "Create",
+    "Delete",
+    "Get",
+    "WrapKey",
+    "UnwrapKey",
+    "Purge",
+    "Recover",
+    "Update",
+    "List",
+    "Decrypt",
+    "Sign",
+    "GetRotationPolicy",
+    "Rotate",
+    "GetRotationPolicy",
+    "SetRotationPolicy",
+  ]
 
-    secret_permissions = [
-      "Get",
-    ]
+  secret_permissions = [
+    "Get",
+  ]
 
-    storage_permissions = [
-      "Get",
-    ]
+  storage_permissions = [
+    "Get",
+  ]
 }
 
 # Create a access policy for User
@@ -569,9 +569,9 @@ resource "azurerm_key_vault_key" "diskencryptionkey" {
   key_type     = "RSA"
   key_size     = 2048
 
-#  depends_on = [
-#      azurerm_key_vault_access_policy.user_policy
-#  ]
+  #  depends_on = [
+  #      azurerm_key_vault_access_policy.user_policy
+  #  ]
 
   key_opts = [
     "decrypt",
