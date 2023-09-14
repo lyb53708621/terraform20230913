@@ -2,7 +2,7 @@ prefix       = "prd"
 disk_size_gb = 30
 #client_secret = "asE8Q~6nZZJfP5O.m.GWE8K6tJ_oGYu.wNOpydve"
 environment = "prd"
-location    = "chinanorth2"
+location    = "australiaeast"
 
 # VNET related
 #terraform_vnet_name = "terraform-test-vnet"
