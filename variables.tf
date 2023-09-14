@@ -14,7 +14,7 @@ variable "environment" {
 }
 variable "location" {
   type    = string
-  default = "chinanorth2"
+  default = "australiaeast"
 }
 
 variable "vm_username" {
