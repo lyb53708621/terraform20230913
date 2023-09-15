@@ -17,10 +17,10 @@ terraform {
   }
 
   backend "azurerm" {
-    resource_group_name  = "ae_fundmental"
-    storage_account_name = "aesto1"
+    resource_group_name  = "tfrg"
+    storage_account_name = "testyiboblob"
     container_name       = "terraform"
-    key                  = "prd.terrasform.tfstate"
+    key                  = "dev.terrasform.tfstate"
   }
 }
 
