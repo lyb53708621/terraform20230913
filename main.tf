@@ -140,20 +140,32 @@ resource "azurerm_network_security_group" "BastionNSG" {
   resource_group_name = azurerm_resource_group.tfrg.name
 
   security_rule {
-    name                       = "SSH_RDP"
+    name                       = "SSH_OUT"
     priority                   = 120
     direction                  = "Outbound"
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
-    destination_port_range     = "22,3389"
+    destination_port_range     = "22"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+    security_rule {
+    name                       = "RDP_OUT"
+    priority                   = 121
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "3389"
     source_address_prefix      = "*"
     destination_address_prefix = "*"
   }
 
   security_rule {
     name                       = "HTTPS_OUT"
-    priority                   = 121
+    priority                   = 122
     direction                  = "Outbound"
     access                     = "Allow"
     protocol                   = "Tcp"
@@ -165,7 +177,7 @@ resource "azurerm_network_security_group" "BastionNSG" {
 
   security_rule {
     name                       = "HTTPS_IN"
-    priority                   = 122
+    priority                   = 123
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
