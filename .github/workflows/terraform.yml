@@ -36,7 +36,7 @@
 #     - https://help.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets
 #
 # 3. Reference the GitHub secret in step using the `hashicorp/setup-terraform` GitHub Action.
-#   Example:
+#   Example:  test
 #     - name: Setup Terraform
 #       uses: hashicorp/setup-terraform@v1
 #       with:
