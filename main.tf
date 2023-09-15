@@ -134,10 +134,57 @@ resource "azurerm_network_security_group" "JumpServerNSG" {
   }
 }
 
+resource "azurerm_network_security_group" "BastionNSG" {
+  name                = "BastionNSG"
+  location            = azurerm_resource_group.tfrg.location
+  resource_group_name = azurerm_resource_group.tfrg.name
+
+  security_rule {
+    name                       = "SSH_RDP"
+    priority                   = 120
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "22,3389"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+  security_rule {
+    name                       = "HTTPS_OUT"
+    priority                   = 121
+    direction                  = "Outbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "443"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+    security_rule {
+    name                       = "HTTPS_IN"
+    priority                   = 122
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "443"
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+}
+
 # Create subnet NSG association
 resource "azurerm_subnet_network_security_group_association" "JumpServerSubnetToNSG" {
   subnet_id                 = azurerm_subnet.JumpServerSubnet.id
   network_security_group_id = azurerm_network_security_group.JumpServerNSG.id
+}
+
+resource "azurerm_subnet_network_security_group_association" "AzureBastionSubnetToNSG" {
+  subnet_id                 = azurerm_subnet.AzureBastionSubnet.id
+  network_security_group_id = azurerm_network_security_group.BastionNSG.id
 }
 
 ##########################################################
