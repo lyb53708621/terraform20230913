@@ -163,7 +163,7 @@ resource "azurerm_network_security_group" "BastionNSG" {
     destination_address_prefix = "*"
   }
 
-    security_rule {
+  security_rule {
     name                       = "HTTPS_IN"
     priority                   = 122
     direction                  = "Inbound"
