@@ -151,7 +151,7 @@ resource "azurerm_network_security_group" "BastionNSG" {
     destination_address_prefix = "*"
   }
 
-    security_rule {
+  security_rule {
     name                       = "RDP_OUT"
     priority                   = 121
     direction                  = "Outbound"
